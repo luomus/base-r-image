@@ -1,21 +1,15 @@
-## Modified from https://github.com/rocker-org/rocker-versioned2/blob/caff65d9b31327e0662633860c54ae2cc28bc60f/scripts/install_R.sh
-
 #!/bin/bash
 set -e
 
 apt-get update && apt-get -y install lsb-release
 
-LANG=${LANG:-en_US.UTF-8}
-LC_ALL=${LC_ALL:-en_US.UTF-8}
-CRAN=${CRAN:-https://cran.r-project.org}
+LANG=en_US.UTF-8
+LC_ALL=en_US.UTF-8
 
 export DEBIAN_FRONTEND=noninteractive
 
 # Set up and install R
-R_HOME=${R_HOME:-/usr/local/lib/R}
-
-READLINE_VERSION=8
-OPENBLAS=libopenblas-dev
+R_HOME=usr/local/lib/R
 
 apt-get update \
   && apt-get install -y --no-install-recommends \
@@ -33,10 +27,10 @@ apt-get update \
     libicu* \
     libpcre2* \
     libjpeg-turbo* \
-    ${OPENBLAS} \
+    libopenblas-dev \
     libpangocairo-* \
     libpng16* \
-    libreadline${READLINE_VERSION} \
+    libreadline8 \
     libtiff* \
     liblzma* \
     locales \
@@ -84,15 +78,8 @@ BUILDDEPS="curl \
 
 apt-get install -y --no-install-recommends $BUILDDEPS
 
-if [[ "$R_VERSION" == "devel" ]]; then                               \
-    wget https://stat.ethz.ch/R/daily/R-devel.tar.gz;                \
-elif [[ "$R_VERSION" == "patched" ]]; then                           \
-    wget https://stat.ethz.ch/R/daily/R-patched.tar.gz;              \
-else                                                                 \
-    wget https://cran.r-project.org/src/base/R-3/R-${R_VERSION}.tar.gz || \
-    wget https://cran.r-project.org/src/base/R-4/R-${R_VERSION}.tar.gz; \
-fi &&                                                                \
-    tar xzf R-${R_VERSION}.tar.gz &&
+wget https://cran.r-project.org/src/base/R-4/R-${R_VERSION}.tar.gz
+tar xzf R-${R_VERSION}.tar.gz &&
 
 cd R-${R_VERSION}
 R_PAPERSIZE=letter \
@@ -137,7 +124,7 @@ echo "R_LIBS=\${R_LIBS-'${R_HOME}/site-library:${R_HOME}/library'}" >> ${R_HOME}
 echo "TZ=${TZ}" >> ${R_HOME}/etc/Renviron
 
 ## Use littler installation scripts
-Rscript -e "install.packages(c('littler', 'docopt'), repos='https://cran.r-project.org')"
+Rscript -e "install.packages(c('littler', 'docopt'))"
 ln -s ${R_HOME}/site-library/littler/examples/install2.r /usr/local/bin/install2.r
 ln -s ${R_HOME}/site-library/littler/examples/installGithub.r /usr/local/bin/installGithub.r
 ln -s ${R_HOME}/site-library/littler/bin/r /usr/local/bin/r
