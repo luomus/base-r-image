@@ -21,12 +21,16 @@ RUN apt-get update \
       file \
       gdal-bin \
       gpg-agent \
+      libcurl4-openssl-dev \
       libgdal-dev \
       libgeos-dev \
+      libpq-dev \
       libproj-dev \
       libsodium-dev \
       libssl-dev \
       libudunits2-dev \
+      libz-dev \
+      pandoc \
       pkg-config \
       software-properties-common \
  && apt-get autoremove -y \
