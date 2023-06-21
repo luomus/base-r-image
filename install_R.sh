@@ -9,7 +9,7 @@ LC_ALL=en_US.UTF-8
 export DEBIAN_FRONTEND=noninteractive
 
 # Set up and install R
-R_HOME=usr/local/lib/R
+R_HOME=/usr/local/lib/R
 
 apt-get update \
   && apt-get install -y --no-install-recommends \
@@ -79,7 +79,7 @@ BUILDDEPS="curl \
 apt-get install -y --no-install-recommends $BUILDDEPS
 
 wget https://cran.r-project.org/src/base/R-4/R-${R_VERSION}.tar.gz
-tar xzf R-${R_VERSION}.tar.gz &&
+tar xzf R-${R_VERSION}.tar.gz
 
 cd R-${R_VERSION}
 R_PAPERSIZE=letter \
