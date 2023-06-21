@@ -124,7 +124,7 @@ echo "R_LIBS=\${R_LIBS-'${R_HOME}/site-library:${R_HOME}/library'}" >> ${R_HOME}
 echo "TZ=${TZ}" >> ${R_HOME}/etc/Renviron
 
 ## Use littler installation scripts
-Rscript -e "install.packages(c('littler', 'docopt'))"
+Rscript -e "install.packages(c('littler', 'docopt'), repos = 'https://cran.r-project.org')"
 ln -s ${R_HOME}/site-library/littler/examples/install2.r /usr/local/bin/install2.r
 ln -s ${R_HOME}/site-library/littler/examples/installGithub.r /usr/local/bin/installGithub.r
 ln -s ${R_HOME}/site-library/littler/bin/r /usr/local/bin/r
