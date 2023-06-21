@@ -6,6 +6,8 @@ suppressPackageStartupMessages({
 
 options(plumber.maxRequestSize = 1e8L)
 
+convert_empty <- function(x) switch(paste0(".", x), . = "-", x)
+
 log_file <- tempfile("plumber_", "logs", ".log")
 
 log_appender(appender_tee(log_file))
