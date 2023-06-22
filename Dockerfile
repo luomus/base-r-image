@@ -51,7 +51,6 @@ RUN apt-get update \
       libssl-dev \
       libtiff* \
       libudunits2-dev \
-      libxml2-dev \
       libz-dev \
       locales \
       lsb-release \
@@ -80,6 +79,13 @@ RUN install2.r -e \
   plumber \
   rapidoc \
   tictoc
+
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends \
+      libxml2-dev \
+ && apt-get autoremove --purge -y \
+ && apt-get autoclean -y \
+ && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /home/user
 
