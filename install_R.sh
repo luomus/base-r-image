@@ -53,10 +53,8 @@ R_ZIPCMD=/usr/bin/zip \
 R_PRINTCMD=/usr/bin/lpr \
 LIBnn=lib \
 AWK=/usr/bin/awk \
-CFLAGS="-g -O2 -fstack-protector-strong -Wformat -Werror=format-security
-  -Wdate-time -D_FORTIFY_SOURCE=2 -g" \
-CXXFLAGS="-g -O2 -fstack-protector-strong -Wformat -Werror=format-security
-  -Wdate-time -D_FORTIFY_SOURCE=2 -g" \
+CFLAGS="-g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g" \
+CXXFLAGS="-g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g" \
 ./configure --enable-R-shlib \
   --disable-memory-profiling \
   --with-readline \
