@@ -7,38 +7,67 @@ ENV TZ=Etc/UTC
 ENV OPENBLAS_NUM_THREADS=1
 ENV OMP_THREAD_LIMIT=1
 ENV HOME=/home/user
+ENV LANG=en_US.UTF-8
+ENV LC_ALL=en_US.UTF-8
+ENV DEBIAN_FRONTEND=noninteractive
+ENV R_HOME=/usr/local/lib/R
 
 COPY install_R.sh install_R.sh
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 COPY init.R /home/user/init.R
 COPY robots.txt /home/user/robots.txt
 
-RUN /install_R.sh
-
 RUN apt-get update \
  && apt-get install -y --no-install-recommends \
+      bash-completion \
+      ca-certificates \
       curl \
+      devscripts \
       file \
+      fonts-texgyre \
+      g++ \
       gdal-bin \
+      gfortran \
       gpg-agent \
+      gsfonts \
+      libblas-dev \
+      libbz2-* \
+      libcurl4 \
       libcurl4-openssl-dev \
       libgdal-dev \
       libgeos-dev \
+      libicu* \
       libjq-dev \
+      libjpeg-turbo* \
+      liblzma* \
+      libopenblas-dev \
+      libpangocairo-* \
+      libpcre2* \
+      libpng16* \
       libpq-dev \
       libproj-dev \
+      libreadline8 \
       libsodium-dev \
       libssl-dev \
+      libtiff* \
       libudunits2-dev \
       libxml2-dev \
       libz-dev \
+      locales \
+      lsb-release \
+      make \
       nano \
       pandoc \
       pkg-config \
       software-properties-common \
- && apt-get autoremove -y \
+      unzip \
+      zip \
+      zlib1g \
+ && apt-get autoremove --purge -y \
  && apt-get autoclean -y \
  && rm -rf /var/lib/apt/lists/*
+
+RUN /install_R.sh
 
 HEALTHCHECK --interval=1m --timeout=10s \
   CMD curl -sfI -o /dev/null 0.0.0.0:8000/healthz || exit 1

@@ -1,44 +1,6 @@
 #!/bin/bash
 set -e
 
-apt-get update && apt-get -y install lsb-release
-
-LANG=en_US.UTF-8
-LC_ALL=en_US.UTF-8
-
-export DEBIAN_FRONTEND=noninteractive
-
-# Set up and install R
-R_HOME=/usr/local/lib/R
-
-apt-get update \
-  && apt-get install -y --no-install-recommends \
-    bash-completion \
-    ca-certificates \
-    devscripts \
-    file \
-    fonts-texgyre \
-    g++ \
-    gfortran \
-    gsfonts \
-    libblas-dev \
-    libbz2-* \
-    libcurl4 \
-    libicu* \
-    libpcre2* \
-    libjpeg-turbo* \
-    libopenblas-dev \
-    libpangocairo-* \
-    libpng16* \
-    libreadline8 \
-    libtiff* \
-    liblzma* \
-    locales \
-    make \
-    unzip \
-    zip \
-    zlib1g
-
 echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 locale-gen en_US.utf8
 /usr/sbin/update-locale LANG=en_US.UTF-8
@@ -47,7 +9,6 @@ BUILDDEPS="curl \
     default-jdk \
     libbz2-dev \
     libcairo2-dev \
-    libcurl4-openssl-dev \
     libpango1.0-dev \
     libjpeg-dev \
     libicu-dev \
