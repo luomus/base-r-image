@@ -37,7 +37,7 @@ BUILDDEPS="curl \
     wget \
     zlib1g-dev"
 
-apt-get install -y --no-install-recommends $BUILDDEPS
+apt-get update && apt-get install -y --no-install-recommends $BUILDDEPS
 
 wget https://cran.r-project.org/src/base/R-4/R-${R_VERSION}.tar.gz
 tar xzf R-${R_VERSION}.tar.gz
@@ -96,6 +96,6 @@ rm -rf /tmp/*
 rm -rf R-${R_VERSION}
 rm -rf R-${R_VERSION}.tar.gz
 apt-get remove --purge -y $BUILDDEPS
-apt-get autoremove -y
+apt-get autoremove --purge -y
 apt-get autoclean -y
 rm -rf /var/lib/apt/lists/*
