@@ -26,7 +26,6 @@ RUN apt-get update \
       file \
       fonts-texgyre \
       g++ \
-      gdal-bin \
       gfortran \
       gpg-agent \
       gsfonts \
@@ -34,8 +33,6 @@ RUN apt-get update \
       libbz2-* \
       libcurl4 \
       libcurl4-openssl-dev \
-      libgdal-dev \
-      libgeos-dev \
       libicu* \
       libjq-dev \
       libjpeg-turbo* \
@@ -45,7 +42,6 @@ RUN apt-get update \
       libpcre2* \
       libpng16* \
       libpq-dev \
-      libproj-dev \
       libreadline8 \
       libsodium-dev \
       libssl-dev \
@@ -82,7 +78,11 @@ RUN install2.r -e \
 
 RUN apt-get update \
  && apt-get install -y --no-install-recommends \
+      gdal-bin \
+      libgdal-dev \
+      libgeos-dev \
       libxml2-dev \
+      libproj-dev \
  && apt-get autoremove --purge -y \
  && apt-get autoclean -y \
  && rm -rf /var/lib/apt/lists/*
