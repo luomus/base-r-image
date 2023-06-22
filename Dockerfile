@@ -24,12 +24,15 @@ RUN apt-get update \
       libcurl4-openssl-dev \
       libgdal-dev \
       libgeos-dev \
+      libjq-dev \
       libpq-dev \
       libproj-dev \
       libsodium-dev \
       libssl-dev \
       libudunits2-dev \
+      libxml2-dev \
       libz-dev \
+      nano \
       pandoc \
       pkg-config \
       software-properties-common \

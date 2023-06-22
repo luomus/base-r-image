@@ -8,7 +8,27 @@ options(plumber.maxRequestSize = 1e8L)
 
 convert_empty <- function(x) switch(paste0(".", x), . = "-", x)
 
-log_file <- tempfile("plumber_", "logs", ".log")
+status_dir <- Sys.getenv("STATUS_DIR", "status")
+
+log_dir <- Sys.getenv("LOG_DIR", "logs")
+
+if (!dir.exists(status_dir)) {
+
+  status_dir <- dir.create(status_dir, recursive = TRUE)
+
+  stopifnot("Status dir creation failed" = status_dir)
+
+}
+
+if (!dir.exists(log_dir)) {
+
+  log_dir <- dir.create(log_dir, recursive = TRUE)
+
+  stopifnot("Log dir creation failed" = log_dir)
+
+}
+
+log_file <- tempfile("plumber_", log_dir, ".log")
 
 log_appender(appender_tee(log_file))
 
