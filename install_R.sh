@@ -53,8 +53,10 @@ R_ZIPCMD=/usr/bin/zip \
 R_PRINTCMD=/usr/bin/lpr \
 LIBnn=lib \
 AWK=/usr/bin/awk \
-CFLAGS="-g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g" \
-CXXFLAGS="-g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g" \
+CFLAGS="-g -O2 -fstack-protector-strong -Wformat -Werror=format-security
+  -Wdate-time -D_FORTIFY_SOURCE=2 -g" \
+CXXFLAGS="-g -O2 -fstack-protector-strong -Wformat -Werror=format-security
+  -Wdate-time -D_FORTIFY_SOURCE=2 -g" \
 ./configure --enable-R-shlib \
   --disable-memory-profiling \
   --with-readline \
@@ -72,7 +74,7 @@ echo "options(
   download.file.method = 'libcurl'
 )" >> ${R_HOME}/etc/Rprofile.site
 
-echo  'options(
+echo 'options(
   HTTPUserAgent = sprintf(
     "R/%s R (%s)",
     getRversion(),
@@ -89,8 +91,8 @@ echo "R_LIBS=\${R_LIBS-'${R_HOME}/site-library:${R_HOME}/library'}" >> \
 
 echo "TZ=${TZ}" >> ${R_HOME}/etc/Renviron
 
-Rscript -e "install.packages('littler'), repos = 'https://cran.r-project.org')"
-Rscript -e "install.packages('docopt'), repos = 'https://cran.r-project.org')"
+Rscript -e "install.packages('littler', repos = 'https://cran.r-project.org')"
+Rscript -e "install.packages('docopt', repos = 'https://cran.r-project.org')"
 ln -s ${R_HOME}/site-library/littler/examples/install2.r \
   /usr/local/bin/install2.r
 ln -s ${R_HOME}/site-library/littler/examples/installGithub.r \
