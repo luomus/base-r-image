@@ -14,17 +14,17 @@ log_dir <- Sys.getenv("LOG_DIR", "logs")
 
 if (!dir.exists(status_dir)) {
 
-  status_dir <- dir.create(status_dir, recursive = TRUE)
-
-  stopifnot("Status dir creation failed" = status_dir)
+  stopifnot(
+    "Status dir creation failed" = dir.create(status_dir, recursive = TRUE)
+  )
 
 }
 
 if (!dir.exists(log_dir)) {
 
-  log_dir <- dir.create(log_dir, recursive = TRUE)
-
-  stopifnot("Log dir creation failed" = log_dir)
+  stopifnot(
+    "Log dir creation failed" = dir.create(log_dir, recursive = TRUE)
+  )
 
 }
 
