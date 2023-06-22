@@ -6,36 +6,36 @@ locale-gen en_US.utf8
 /usr/sbin/update-locale LANG=en_US.UTF-8
 
 BUILDDEPS="curl \
-    default-jdk \
-    libbz2-dev \
-    libcairo2-dev \
-    libpango1.0-dev \
-    libjpeg-dev \
-    libicu-dev \
-    libpcre2-dev \
-    libpng-dev \
-    libreadline-dev \
-    libtiff5-dev \
-    liblzma-dev \
-    libx11-dev \
-    libxt-dev \
-    perl \
-    rsync \
-    subversion \
-    tcl-dev \
-    tk-dev \
-    texinfo \
-    texlive-extra-utils \
-    texlive-fonts-recommended \
-    texlive-fonts-extra \
-    texlive-latex-recommended \
-    texlive-latex-extra \
-    x11proto-core-dev \
-    xauth \
-    xfonts-base \
-    xvfb \
-    wget \
-    zlib1g-dev"
+  default-jdk \
+  libbz2-dev \
+  libcairo2-dev \
+  libpango1.0-dev \
+  libjpeg-dev \
+  libicu-dev \
+  libpcre2-dev \
+  libpng-dev \
+  libreadline-dev \
+  libtiff5-dev \
+  liblzma-dev \
+  libx11-dev \
+  libxt-dev \
+  perl \
+  rsync \
+  subversion \
+  tcl-dev \
+  tk-dev \
+  texinfo \
+  texlive-extra-utils \
+  texlive-fonts-recommended \
+  texlive-fonts-extra \
+  texlive-latex-recommended \
+  texlive-latex-extra \
+  x11proto-core-dev \
+  xauth \
+  xfonts-base \
+  xvfb \
+  wget \
+  zlib1g-dev"
 
 apt-get update && apt-get install -y --no-install-recommends $BUILDDEPS
 
@@ -56,41 +56,47 @@ AWK=/usr/bin/awk \
 CFLAGS="-g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g" \
 CXXFLAGS="-g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g" \
 ./configure --enable-R-shlib \
-		   --disable-memory-profiling \
-		   --with-readline \
-		   --with-blas \
-		   --with-lapack \
-		   --with-tcltk \
-		   --disable-nls \
-		   --with-recommended-packages
+  --disable-memory-profiling \
+  --with-readline \
+  --with-blas \
+  --with-lapack \
+  --with-tcltk \
+  --disable-nls \
+  --with-recommended-packages
 make
 make install
 make clean
 
-## Add a default CRAN mirror
-echo "options(repos = c(CRAN = '${CRAN}'), download.file.method = 'libcurl')" >> ${R_HOME}/etc/Rprofile.site
+echo "options(
+  repos = c(CRAN = '${CRAN}'),
+  download.file.method = 'libcurl'
+)" >> ${R_HOME}/etc/Rprofile.site
 
-## Set HTTPUserAgent for RSPM (https://github.com/rocker-org/rocker/issues/400)
-echo  'options(HTTPUserAgent = sprintf("R/%s R (%s)", getRversion(),
-                 paste(getRversion(), R.version$platform,
-                       R.version$arch, R.version$os)))' >> ${R_HOME}/etc/Rprofile.site
+echo  'options(
+  HTTPUserAgent = sprintf(
+    "R/%s R (%s)",
+    getRversion(),
+    paste(getRversion(), R.version$platform, R.version$arch, R.version$os)
+  )
+)' >> ${R_HOME}/etc/Rprofile.site
 
-## Add a library directory (for user-installed packages)
 mkdir -p ${R_HOME}/site-library
 chown root:staff ${R_HOME}/site-library
 chmod g+ws ${R_HOME}/site-library
 
-## Fix library path
-echo "R_LIBS=\${R_LIBS-'${R_HOME}/site-library:${R_HOME}/library'}" >> ${R_HOME}/etc/Renviron
+echo "R_LIBS=\${R_LIBS-'${R_HOME}/site-library:${R_HOME}/library'}" >> \
+  ${R_HOME}/etc/Renviron
+
 echo "TZ=${TZ}" >> ${R_HOME}/etc/Renviron
 
-## Use littler installation scripts
-Rscript -e "install.packages(c('littler', 'docopt'), repos = 'https://cran.r-project.org')"
-ln -s ${R_HOME}/site-library/littler/examples/install2.r /usr/local/bin/install2.r
-ln -s ${R_HOME}/site-library/littler/examples/installGithub.r /usr/local/bin/installGithub.r
+Rscript -e "install.packages('littler'), repos = 'https://cran.r-project.org')"
+Rscript -e "install.packages('docopt'), repos = 'https://cran.r-project.org')"
+ln -s ${R_HOME}/site-library/littler/examples/install2.r \
+  /usr/local/bin/install2.r
+ln -s ${R_HOME}/site-library/littler/examples/installGithub.r \
+  /usr/local/bin/installGithub.r
 ln -s ${R_HOME}/site-library/littler/bin/r /usr/local/bin/r
 
-## Clean up from R source install
 cd /
 rm -rf /tmp/*
 rm -rf R-${R_VERSION}
