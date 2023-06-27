@@ -17,7 +17,10 @@ COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 COPY init.R /home/user/init.R
 COPY robots.txt /home/user/robots.txt
 
-RUN apt-get update \
+RUN echo \
+     "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula" \
+     "select true" | debconf-set-selections \
+ && apt-get update \
  && apt-get install -y --no-install-recommends \
       bash-completion \
       ca-certificates \
@@ -55,9 +58,11 @@ RUN apt-get update \
       pandoc \
       pkg-config \
       software-properties-common \
+      ttf-mscorefonts-installer \
       unzip \
       zip \
       zlib1g \
+ && fc-cache -f \
  && apt-get autoremove --purge -y \
  && apt-get autoclean -y \
  && rm -rf /var/lib/apt/lists/*
