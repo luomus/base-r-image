@@ -24,6 +24,7 @@ RUN echo \
  && apt-get install -y --no-install-recommends \
       bash-completion \
       ca-certificates \
+      cmake \
       curl \
       devscripts \
       file \
