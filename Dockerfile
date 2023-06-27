@@ -79,10 +79,13 @@ RUN install2.r -e \
 RUN apt-get update \
  && apt-get install -y --no-install-recommends \
       gdal-bin \
+      libfribidi-dev \
       libgdal-dev \
       libgeos-dev \
-      libxml2-dev \
+      libharfbuzz-dev \
+      libmagick++-dev \
       libproj-dev \
+      libxml2-dev \
  && apt-get autoremove --purge -y \
  && apt-get autoclean -y \
  && rm -rf /var/lib/apt/lists/*
