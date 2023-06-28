@@ -82,7 +82,8 @@ RUN install2.r -e \
   rapidoc \
   tictoc
 
-RUN apt-get update \
+RUN add-apt-repository ppa:ubuntugis/ubuntugis-unstable \
+ && apt-get update \
  && apt-get install -y --no-install-recommends \
       gdal-bin \
       libfribidi-dev \
