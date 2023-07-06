@@ -1,15 +1,12 @@
 FROM ubuntu:20.04@sha256:8c38f4ea0b178a98e4f9f831b29b7966d6654414c1dc008591c6ec77de3bf2c9
 
 ENV R_VERSION=4.3.1
-ENV TERM=xterm
-ENV CRAN=https://packagemanager.rstudio.com/all/__linux__/focal/latest
+ENV CRAN=https://packagemanager.posit.co/cran/__linux__/focal/latest
 ENV TZ=Etc/UTC
 ENV OPENBLAS_NUM_THREADS=1
 ENV OMP_THREAD_LIMIT=1
 ENV HOME=/home/user
 ENV LANG=en_US.UTF-8
-ENV LC_ALL=en_US.UTF-8
-ENV DEBIAN_FRONTEND=noninteractive
 ENV R_HOME=/usr/local/lib/R
 
 COPY install_R.sh install_R.sh
