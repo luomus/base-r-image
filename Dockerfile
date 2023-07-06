@@ -1,8 +1,8 @@
-FROM ubuntu:20.04@sha256:0e0402cd13f68137edb0266e1d2c682f217814420f2d43d300ed8f65479b14fb
+FROM ubuntu:22.04@sha:b060fffe8e1561c9c3e6dea6db487b900100fc26830b9ea2ec966c151ab4c020
 
 ENV R_VERSION=4.3.1
 ENV TERM=xterm
-ENV CRAN=https://packagemanager.rstudio.com/all/__linux__/focal/latest
+ENV CRAN=https://packagemanager.rstudio.com/all/__linux__/jammy/latest
 ENV TZ=Etc/UTC
 ENV OPENBLAS_NUM_THREADS=1
 ENV OMP_THREAD_LIMIT=1
