@@ -97,7 +97,7 @@ RUN add-apt-repository ppa:ubuntugis/ubuntugis-unstable \
 
 RUN install2.r -r https://cloud.r-project.org -e sf
 
-RUN installGithub -e luomus/finbif@dev
+RUN installGithub.r -e luomus/finbif@dev
 
 WORKDIR /home/user
 
