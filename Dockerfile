@@ -78,6 +78,7 @@ RUN install2.r -e \
   logger \
   plumber \
   rapidoc \
+  remotes \
   tictoc
 
 RUN add-apt-repository ppa:ubuntugis/ubuntugis-unstable \
