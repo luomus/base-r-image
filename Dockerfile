@@ -80,7 +80,7 @@ RUN install2.r -e \
   rapidoc \
   tictoc
 
-RUN install2.r -r https://cload.r-project.org -e sf
+RUN install2.r -r https://cloud.r-project.org -e sf
 
 RUN installGithub -e luomus/finbif@dev
 
