@@ -1,6 +1,14 @@
 #!/bin/bash
 
+BRANCH=${BRANCH:-main}
+
 PAGE_TITLE=${PAGE_TITLE:-API}
+
+if [ "${BRANCH}" != "main" ]; then
+
+PAGE_TITLE=${PAGE_TITLE}-dev
+
+fi
 
 R_LIBRARY=$(R --slave -e "cat(.libPaths()[[1]])")
 
