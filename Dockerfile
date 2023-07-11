@@ -72,13 +72,13 @@ RUN echo \
 RUN /install_R.sh
 
 RUN install2.r -e \
-  renv \
   covr \
   DT \
   logger \
   plumber \
   rapidoc \
   remotes \
+  renv \
   tictoc
 
 RUN add-apt-repository ppa:ubuntugis/ubuntugis-unstable \
@@ -97,8 +97,6 @@ RUN add-apt-repository ppa:ubuntugis/ubuntugis-unstable \
  && rm -rf /var/lib/apt/lists/*
 
 RUN install2.r -r https://cloud.r-project.org -e sf
-
-RUN installGithub.r luomus/finbif@dev
 
 WORKDIR /home/user
 
