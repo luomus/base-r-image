@@ -78,7 +78,6 @@ RUN install2.r -e \
   plumber \
   rapidoc \
   remotes \
-  renv \
   tictoc
 
 RUN add-apt-repository ppa:ubuntugis/ubuntugis-unstable \
@@ -96,7 +95,11 @@ RUN add-apt-repository ppa:ubuntugis/ubuntugis-unstable \
  && apt-get autoclean -y \
  && rm -rf /var/lib/apt/lists/*
 
-RUN install2.r -r https://cloud.r-project.org -e sf
+RUN install2.r -r https://cloud.r-project.org -e sf renv
+
+RUN mkdir -p /home/user/logs /home/user/coverage \
+ && chgrp -R 0 /home/user /usr/local/lib/R/site-library \
+ && chmod -R g=u /home/user /etc/passwd /usr/local/lib/R/site-library
 
 WORKDIR /home/user
 
