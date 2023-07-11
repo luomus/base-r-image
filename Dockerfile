@@ -14,6 +14,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 COPY install_R.sh install_R.sh
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+COPY permissions.sh /usr/local/bin/permissions.sh
 COPY init.R /home/user/init.R
 COPY robots.txt /home/user/robots.txt
 COPy .Rprofile /home/user/.Rprofile
@@ -97,9 +98,7 @@ RUN add-apt-repository ppa:ubuntugis/ubuntugis-unstable \
 
 RUN install2.r -r https://cloud.r-project.org -e sf renv
 
-RUN mkdir -p /home/user/logs /home/user/coverage \
- && chgrp -R 0 /home/user /usr/local/lib/R/site-library \
- && chmod -R g=u /home/user /etc/passwd /usr/local/lib/R/site-library
+RUN mkdir -p /home/user/logs /home/user/coverage
 
 WORKDIR /home/user
 
