@@ -17,7 +17,7 @@ COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 COPY permissions.sh /usr/local/bin/permissions.sh
 COPY init.R /home/user/init.R
 COPY robots.txt /home/user/robots.txt
-COPy .Rprofile /home/user/.Rprofile
+COPY .Rprofile /home/user/.Rprofile
 
 RUN echo \
      "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula" \
