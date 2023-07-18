@@ -98,7 +98,7 @@ RUN add-apt-repository ppa:ubuntugis/ubuntugis-unstable \
 
 RUN install2.r -r https://cloud.r-project.org -e sf renv
 
-RUN mkdir -p /home/user/logs /home/user/coverage
+RUN mkdir -p /home/user/logs /home/user/coverage /home/user/data
 
 WORKDIR /home/user
 
