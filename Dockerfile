@@ -99,9 +99,11 @@ RUN add-apt-repository ppa:ubuntugis/ubuntugis-unstable \
 RUN install2.r -r https://cloud.r-project.org -e sf renv
 
 RUN mkdir -p \
+  /home/user/archives \
   /home/user/coverage \
   /home/user/data \
   /home/user/logs \
+  /home/user/stage \
   /home/user/tmp \
   /home/user/var
 
