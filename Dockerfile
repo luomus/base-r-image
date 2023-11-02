@@ -1,6 +1,6 @@
-FROM ubuntu:20.04@sha256:3246518d9735254519e1b2ff35f95686e4a5011c90c85344c1f38df7bae9dd37
+FROM ubuntu:20.04@sha256:218bb51abbd1864df8be26166f847547b3851a89999ca7bfceb85ca9b5d2e95d
 
-ENV R_VERSION=4.3.1
+ENV R_VERSION=4.3.2
 ENV TERM=xterm
 ENV CRAN=https://packagemanager.posit.co/cran/__linux__/focal/latest
 ENV TZ=Etc/UTC
