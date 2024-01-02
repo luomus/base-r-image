@@ -96,6 +96,8 @@ RUN add-apt-repository ppa:ubuntugis/ubuntugis-unstable \
  && apt-get autoclean -y \
  && rm -rf /var/lib/apt/lists/*
 
+ARG CACHEBUST=1
+
 RUN install2.r -r https://cloud.r-project.org -e igraph renv sf
 
 RUN mkdir -p \
