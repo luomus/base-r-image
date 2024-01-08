@@ -100,7 +100,7 @@ RUN R -s -e \
       'rapidoc', \
       'tictoc' \
     ), \
-    repos = ' https://cloud.r-project.org' \
+    repos = 'https://cloud.r-project.org' \
   )"
 
 RUN mkdir -p \
