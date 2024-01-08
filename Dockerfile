@@ -96,6 +96,7 @@ RUN R -s -e \
       'covr', \
       'DT', \
       'logger', \
+      'magick', \
       'plumber', \
       'rapidoc', \
       'tictoc' \
