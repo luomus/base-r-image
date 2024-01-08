@@ -87,13 +87,6 @@ RUN add-apt-repository ppa:ubuntugis/ubuntugis-unstable \
 
 RUN /install_R.sh
 
-RUN install2.r -r https://cloud.r-project.org -e igraph renv sf covr \
-  DT \
-  logger \
-  plumber \
-  rapidoc \
-  tictoc
-
 RUN R -s -e \
   "install.packages( \
     c( \
