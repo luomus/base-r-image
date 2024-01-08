@@ -34,30 +34,33 @@ log_appender(appender_tee(log_file))
 
 p <- plumb("api.R")
 
-p$registerHooks(
+p[["registerHooks"]](
   list(
     preroute = function() tic(),
     postroute = function(req, res) {
 
       end <- toc(quiet = TRUE)
 
-      log_fn <- log_info
+      f <- log_info
 
-      if (res$status >= 400L) log_fn <- log_error
+      if (res[["status"]] >= 400L) f <- log_error
 
-      if (identical(req[["PATH_INFO"]], "/healthz")) log_fn <- \(.) {}
+      g <- function(...) {}
 
-      if (identical(req[["HTTP_USER_AGENT"]], "Zabbix")) log_fn <- \(.) {}
+      if (identical(sub( "/api", "", req[["PATH_INFO"]]), "/healthz")) f <- g
 
-      log_fn(
-        paste0(
-          '{convert_empty(req$REMOTE_ADDR)} ',
-          '"{convert_empty(req$HTTP_USER_AGENT)}" ',
-          '{convert_empty(req$HTTP_HOST)} ',
-          '{convert_empty(req$REQUEST_METHOD)} ',
-          '{convert_empty(req$PATH_INFO)} ',
-          '{convert_empty(res$status)} ',
-          '{round(end$toc - end$tic, digits = getOption("digits", 5L))}'
+      if (identical(req[["HTTP_USER_AGENT"]], "Zabbix")) f <- g
+
+      f(
+        paste(
+          "{convert_empty(req[[\"REMOTE_ADDR\"]])}",
+          "\"{convert_empty(req[[\"HTTP_USER_AGENT\"]])}\"",
+          "{convert_empty(req[[\"HTTP_HOST\"]])}",
+          "{convert_empty(req[[\"REQUEST_METHOD\"]])}",
+          "{convert_empty(req[[\"PATH_INFO\"]])}",
+          "{convert_empty(res[[\"status\"]])}",
+          "{round(end[[\"toc\"]] - end[[\"tic\"]]",
+          "digits = getOption(\"digits\", 5L))}"
         )
       )
 
@@ -65,4 +68,4 @@ p$registerHooks(
   )
 )
 
-p$run(host = "0.0.0.0", port = 8000L, quiet = TRUE)
+p[["run"]](host = "0.0.0.0", port = 8000L, quiet = TRUE)
