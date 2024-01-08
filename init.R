@@ -59,7 +59,7 @@ p[["registerHooks"]](
           "{convert_empty(req[[\"REQUEST_METHOD\"]])}",
           "{convert_empty(req[[\"PATH_INFO\"]])}",
           "{convert_empty(res[[\"status\"]])}",
-          "{round(end[[\"toc\"]] - end[[\"tic\"]]",
+          "{round(end[[\"toc\"]] - end[[\"tic\"]],",
           "digits = getOption(\"digits\", 5L))}"
         )
       )
