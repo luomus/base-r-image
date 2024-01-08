@@ -72,8 +72,9 @@ RUN echo \
 
 RUN /install_R.sh
 
-RUN R -s -e \
-  "install.packages( \
+RUN R -s -e " \
+  options(warn = 2); \
+  utils::install.packages( \
     c( \
       'covr', \
       'DT', \
@@ -99,8 +100,9 @@ RUN add-apt-repository ppa:ubuntugis/ubuntugis-unstable \
  && apt-get autoclean -y \
  && rm -rf /var/lib/apt/lists/*
 
-RUN R -s -e \
-  "install.packages( \
+RUN R -s -e " \
+  options(warn = 2); \
+  utils::install.packages( \
     c( \
       'igraph', \
       'magick', \
