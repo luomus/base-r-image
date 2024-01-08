@@ -1,7 +1,7 @@
 suppressPackageStartupMessages({
-  library(logger, quietly = TRUE)
-  library(plumber, quietly = TRUE)
-  library(tictoc, quietly = TRUE)
+  library(logger, warn.conflicts = TRUE, quietly = TRUE)
+  library(plumber, warn.conflicts = TRUE, quietly = TRUE)
+  library(tictoc, warn.conflicts = TRUE, quietly = TRUE)
 })
 
 options(plumber.maxRequestSize = 1e8L)
