@@ -70,16 +70,6 @@ RUN echo \
  && apt-get autoclean -y \
  && rm -rf /var/lib/apt/lists/*
 
-RUN /install_R.sh
-
-RUN install2.r -e \
-  covr \
-  DT \
-  logger \
-  plumber \
-  rapidoc \
-  tictoc
-
 RUN add-apt-repository ppa:ubuntugis/ubuntugis-unstable \
  && apt-get update \
  && apt-get install -y --no-install-recommends \
@@ -95,7 +85,30 @@ RUN add-apt-repository ppa:ubuntugis/ubuntugis-unstable \
  && apt-get autoclean -y \
  && rm -rf /var/lib/apt/lists/*
 
-RUN install2.r -r https://cloud.r-project.org -e igraph renv sf
+RUN /install_R.sh
+
+RUN install2.r -r https://cloud.r-project.org -e igraph renv sf covr \
+  DT \
+  logger \
+  plumber \
+  rapidoc \
+  tictoc
+
+RUN R -s -e \
+  "install.packages( \
+    c( \
+      'igraph', \
+       'renv', \
+      'sf', \
+      'covr', \
+      'DT', \
+      'logger', \
+      'plumber', \
+      'rapidoc', \
+      'tictoc' \
+    ), \
+    repos = ' https://cloud.r-project.org' \
+  )"
 
 RUN mkdir -p \
   /home/user/archives \

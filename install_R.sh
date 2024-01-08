@@ -89,14 +89,6 @@ echo "R_LIBS=\${R_LIBS-'${R_HOME}/site-library:${R_HOME}/library'}" >> \
 
 echo "TZ=${TZ}" >> ${R_HOME}/etc/Renviron
 
-Rscript -e "install.packages('littler', repos = 'https://cran.r-project.org')"
-Rscript -e "install.packages('docopt', repos = 'https://cran.r-project.org')"
-ln -s ${R_HOME}/site-library/littler/examples/install2.r \
-  /usr/local/bin/install2.r
-ln -s ${R_HOME}/site-library/littler/examples/installGithub.r \
-  /usr/local/bin/installGithub.r
-ln -s ${R_HOME}/site-library/littler/bin/r /usr/local/bin/r
-
 cd /
 rm -rf /tmp/*
 rm -rf R-${R_VERSION}
