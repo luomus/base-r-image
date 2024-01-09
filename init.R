@@ -4,7 +4,11 @@ suppressPackageStartupMessages({
   library(tictoc, warn.conflicts = TRUE, quietly = TRUE)
 })
 
-options(plumber.maxRequestSize = 1e8L)
+path <- Sys.getenv("API_PATH", "unset")
+
+path <- switch(path, unset = NULL, path)
+
+options(plumber.maxRequestSize = 1e8L, plumber.apiPath = path)
 
 convert_empty <- function(x) switch(paste0(".", x), . = "-", x)
 
