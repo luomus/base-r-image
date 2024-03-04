@@ -1,7 +1,7 @@
 # docker manifest inspect ubuntu:20.04 -v | jq '.[0].Descriptor.digest'
-FROM ubuntu:20.04@sha256:bac6081102aae54ba4bcc714695b8f637e42768c7f376f374c428bab043ddc0f
+FROM ubuntu:20.04@sha256:a4fab1802f08df089c4b2e0a1c8f1a06f573bd1775687d07fef4076d3a2e4900
 
-ENV R_VERSION=4.3.2
+ENV R_VERSION=4.3.3
 ENV TERM=xterm
 ENV CRAN=https://packagemanager.posit.co/cran/__linux__/focal/latest
 ENV TZ=Etc/UTC
