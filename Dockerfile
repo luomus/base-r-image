@@ -93,6 +93,7 @@ RUN add-apt-repository ppa:ubuntugis/ubuntugis-unstable \
       libfribidi-dev \
       libgdal-dev \
       libgeos-dev \
+      libglpk-dev \
       libharfbuzz-dev \
       libmagick++-dev \
       libproj-dev \
