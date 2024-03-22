@@ -54,7 +54,7 @@ p[["registerHooks"]](
 
         host <- Sys.getenv("SMTP_SERVER")
 
-        port <-  Sys.getenv("SMTP_PORT")
+        port <- Sys.getenv("SMTP_PORT")
 
         to <- Sys.getenv("ERROR_EMAIL_TO")
 
