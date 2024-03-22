@@ -1,4 +1,5 @@
 suppressPackageStartupMessages({
+  library(emayili, warn.conflicts = TRUE, quietly = TRUE)
   library(logger, warn.conflicts = TRUE, quietly = TRUE)
   library(plumber, warn.conflicts = TRUE, quietly = TRUE)
   library(tictoc, warn.conflicts = TRUE, quietly = TRUE)
@@ -47,7 +48,43 @@ p[["registerHooks"]](
 
       f <- log_info
 
-      if (res[["status"]] >= 400L) f <- log_error
+      if (res[["status"]] >= 400L) {
+
+        f <- log_error
+
+        host <- Sys.getenv("SMTP_SERVER")
+
+        port <-  Sys.getenv("SMTP_PORT")
+
+        to <- Sys.getenv("ERROR_EMAIL_TO")
+
+        from <- Sys.getenv("ERROR_EMAIL_FROM")
+
+        agent <- Sys.getenv("FINBIF_USER_AGENT")
+
+        branch <- Sys.getenv("BRANCH")
+
+        if (!any(c(host, port, to, from, agent, branch) == "")) {
+
+          smtp <- server(host, port)
+
+          subject <- sprintf("Error report: %s on branch %s", agent, branch)
+
+          text <- sprintf(
+            "At [%s]: %s %s (Status: %s)",
+            format(Sys.time()),
+            req[["REQUEST_METHOD"]],
+            req[["PATH_INFO"]],
+            res[["status"]]
+          )
+
+          message <- envelope(to, from, subject = subject, text = text)
+
+          smtp(message)
+
+        }
+
+      }
 
       g <- function(...) {}
 
