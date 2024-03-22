@@ -79,7 +79,7 @@ RUN R -s -e " \
     c( \
       'covr', \
       'DT', \
-      'emayili' \
+      'emayili', \
       'logger', \
       'plumber', \
       'rapidoc', \
