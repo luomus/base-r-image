@@ -103,6 +103,8 @@ RUN add-apt-repository ppa:ubuntugis/ubuntugis-unstable \
  && apt-get autoclean -y \
  && rm -rf /var/lib/apt/lists/*
 
+# sf@v1.0-16
+
 RUN R -s -e " \
   options(warn = 2); \
   utils::install.packages( \
