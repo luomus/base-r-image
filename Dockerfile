@@ -1,5 +1,5 @@
 # docker manifest inspect ubuntu:20.04 -v | jq '.[0].Descriptor.digest'
-FROM ubuntu:20.04@sha256:a4fab1802f08df089c4b2e0a1c8f1a06f573bd1775687d07fef4076d3a2e4900
+FROM ubuntu:20.04@sha256:48c35f3de33487442af224ed4aabac19fd9bfbd91ee90e9471d412706b20ba73
 
 ENV R_VERSION=4.3.3
 ENV TERM=xterm
@@ -102,8 +102,6 @@ RUN add-apt-repository ppa:ubuntugis/ubuntugis-unstable \
  && apt-get autoremove --purge -y \
  && apt-get autoclean -y \
  && rm -rf /var/lib/apt/lists/*
-
-# sf@v1.0-16
 
 RUN R -s -e " \
   options(warn = 2); \
