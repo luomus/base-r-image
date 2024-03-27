@@ -1,5 +1,4 @@
 suppressPackageStartupMessages({
-  library(emayili, warn.conflicts = TRUE, quietly = TRUE)
   library(logger, warn.conflicts = TRUE, quietly = TRUE)
   library(plumber, warn.conflicts = TRUE, quietly = TRUE)
   library(tictoc, warn.conflicts = TRUE, quietly = TRUE)
@@ -66,7 +65,7 @@ p[["registerHooks"]](
 
         if (!any(c(host, port, to, from, agent, branch) == "")) {
 
-          smtp <- server(host, port)
+          smtp <- emayili::server(host, port)
 
           subject <- sprintf("Error report: %s on branch %s", agent, branch)
 
@@ -78,7 +77,7 @@ p[["registerHooks"]](
             res[["status"]]
           )
 
-          message <- envelope(to, from, subject = subject, text = text)
+          message <- emayili::envelope(to, from, subject = subject, text = text)
 
           smtp(message)
 
