@@ -1,4 +1,5 @@
 suppressPackageStartupMessages({
+  library(callr, warn.conflicts = TRUE, quietly = TRUE)
   library(logger, warn.conflicts = TRUE, quietly = TRUE)
   library(plumber, warn.conflicts = TRUE, quietly = TRUE)
   library(tictoc, warn.conflicts = TRUE, quietly = TRUE)
@@ -11,6 +12,26 @@ path <- switch(path, unset = NULL, path)
 options(plumber.maxRequestSize = 1e8L, plumber.apiPath = path)
 
 convert_empty <- function(x) switch(paste0(".", x), . = "-", x)
+
+alert <- function(host, port, agent, branch, to, from, req) {
+
+  smtp <- emayili::server(host, port)
+
+  subject <- sprintf("Error report: %s on branch %s", agent, branch)
+
+  text <- sprintf(
+    "At [%s]: %s %s (Status: %s)",
+    format(Sys.time()),
+    req[["REQUEST_METHOD"]],
+    req[["PATH_INFO"]],
+    res[["status"]]
+  )
+
+  message <- emayili::envelope(to, from, subject = subject, text = text)
+
+  smtp(message)
+
+}
 
 status_dir <- Sys.getenv("STATUS_DIR", "status")
 
@@ -65,21 +86,12 @@ p[["registerHooks"]](
 
         if (!any(c(host, port, to, from, agent, branch) == "")) {
 
-          smtp <- emayili::server(host, port)
-
-          subject <- sprintf("Error report: %s on branch %s", agent, branch)
-
-          text <- sprintf(
-            "At [%s]: %s %s (Status: %s)",
-            format(Sys.time()),
-            req[["REQUEST_METHOD"]],
-            req[["PATH_INFO"]],
-            res[["status"]]
+          r_bg(
+            alert,
+            list(host, port, agent, branch, to, from, req),
+            poll_connection = FALSE,
+            cleanup = FALSE
           )
-
-          message <- emayili::envelope(to, from, subject = subject, text = text)
-
-          smtp(message)
 
         }
 

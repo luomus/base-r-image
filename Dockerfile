@@ -77,6 +77,7 @@ RUN R -s -e " \
   options(warn = 2); \
   utils::install.packages( \
     c( \
+      'callr', \
       'covr', \
       'DT', \
       'emayili', \
