@@ -13,7 +13,7 @@ options(plumber.maxRequestSize = 1e8L, plumber.apiPath = path)
 
 convert_empty <- function(x) switch(paste0(".", x), . = "-", x)
 
-alert <- function(host, port, agent, branch, to, from, req) {
+alert <- function(host, port, agent, branch, to, from, req, res) {
 
   smtp <- emayili::server(host, port)
 
@@ -88,7 +88,7 @@ p[["registerHooks"]](
 
           r_bg(
             alert,
-            list(host, port, agent, branch, to, from, req),
+            list(host, port, agent, branch, to, from, req, res),
             poll_connection = FALSE,
             cleanup = FALSE
           )
