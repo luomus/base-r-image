@@ -61,6 +61,8 @@ RUN echo \
       nano \
       pandoc \
       pkg-config \
+      rclone \
+      rsync \
       software-properties-common \
       ttf-mscorefonts-installer \
       unzip \
