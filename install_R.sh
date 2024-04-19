@@ -20,7 +20,6 @@ BUILDDEPS="curl \
   libx11-dev \
   libxt-dev \
   perl \
-  rsync \
   subversion \
   tcl-dev \
   tk-dev \
