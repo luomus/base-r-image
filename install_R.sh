@@ -33,8 +33,7 @@ BUILDDEPS="curl \
   xauth \
   xfonts-base \
   xvfb \
-  wget \
-  zlib1g-dev"
+  wget"
 
 apt-get update && apt-get install -y --no-install-recommends $BUILDDEPS
 

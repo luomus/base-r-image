@@ -68,6 +68,7 @@ RUN echo \
       unzip \
       zip \
       zlib1g \
+      zlib1g-dev \
  && fc-cache -f \
  && apt-get autoremove --purge -y \
  && apt-get autoclean -y \
