@@ -54,6 +54,7 @@ RUN echo \
       libssl-dev \
       libtiff* \
       libudunits2-dev \
+      libxml2-dev \
       libz-dev \
       locales \
       lsb-release \
