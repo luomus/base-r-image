@@ -54,7 +54,6 @@ RUN echo \
       libssl-dev \
       libtiff* \
       libudunits2-dev \
-      libxml2-dev \
       libz-dev \
       locales \
       lsb-release \
@@ -75,6 +74,13 @@ RUN echo \
  && rm -rf /var/lib/apt/lists/*
 
 RUN /install_R.sh
+
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends \
+      libxml2-dev \
+ && apt-get autoremove --purge -y \
+ && apt-get autoclean -y \
+ && rm -rf /var/lib/apt/lists/*
 
 RUN R -s -e " \
   options(warn = 2); \
@@ -102,7 +108,6 @@ RUN add-apt-repository ppa:ubuntugis/ubuntugis-unstable \
       libharfbuzz-dev \
       libmagick++-dev \
       libproj-dev \
-      libxml2-dev \
  && apt-get autoremove --purge -y \
  && apt-get autoclean -y \
  && rm -rf /var/lib/apt/lists/*
