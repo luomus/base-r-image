@@ -38,10 +38,7 @@ BUILDDEPS="curl \
 apt-get update && apt-get install -y --no-install-recommends $BUILDDEPS
 
 wget https://cran.r-project.org/src/base/R-4/R-${R_VERSION}.tar.gz
-mkdir -p R-${R_VERSION}
-chown root:staff  R-${R_VERSION}
-chmod g+ws R-${R_VERSION}
-tar xzf R-${R_VERSION}.tar.gz --no-same-owner --no-overwrite-dir
+tar xzf R-${R_VERSION}.tar.gz
 
 cd R-${R_VERSION}
 R_PAPERSIZE=letter \
