@@ -1,5 +1,5 @@
-# docker manifest inspect ubuntu:20.04 -v | jq '.[0].Descriptor.digest'
-FROM ubuntu:20.04@sha256:cc9cc8169c9517ae035cf293b15f06922cb8c6c864d625a72b7b18667f264b70
+# docker manifest inspect ubuntu:24.04 -v | jq '.[0].Descriptor.digest'
+FROM ubuntu:24.04@sha256:3f85b7caad41a95462cf5b787d8a04604c8262cdcdf9a472b8c52ef83375fe15
 
 ENV R_VERSION=4.4.0
 ENV TERM=xterm
