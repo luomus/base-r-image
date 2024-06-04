@@ -65,6 +65,7 @@ RUN echo \
       rsync \
       software-properties-common \
       ttf-mscorefonts-installer \
+      tzdata \
       unzip \
       zip \
       zlib1g \
