@@ -1,5 +1,5 @@
 # docker manifest inspect ubuntu:22.04 -v | jq '.[0].Descriptor.digest'
-FROM ubuntu:22.04@sha256:2af372c1e2645779643284c7dc38775e3dbbc417b2d784a27c5a9eb784014fb8
+FROM ubuntu:22.04@sha256:94db6b944510db19c0ff5eb13281cf166abfe6f9e01a6f8e716e976664537c60
 
 ENV R_VERSION=4.4.0
 ENV TERM=xterm
@@ -127,11 +127,9 @@ RUN R -s -e " \
   )"
 
 RUN mkdir -p \
-  /home/user/archives \
   /home/user/coverage \
   /home/user/data \
   /home/user/logs \
-  /home/user/stage \
   /home/user/tmp \
   /home/user/var
 
