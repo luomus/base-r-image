@@ -19,6 +19,7 @@ COPY permissions.sh /usr/local/bin/permissions.sh
 COPY init.R /home/user/init.R
 COPY robots.txt /home/user/robots.txt
 COPY .Rprofile /home/user/.Rprofile
+COPY rclone.conf /home/user/.config/rclone/rclone.conf
 
 RUN echo \
      "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula" \
