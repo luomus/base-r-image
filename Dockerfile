@@ -103,7 +103,7 @@ RUN R -s -e " \
       'logger', \
       'plumber', \
       'rapidoc', \
-      'tictoc' \
+      'tictoc', \
       'igraph', \
       'magick', \
       'renv', \
