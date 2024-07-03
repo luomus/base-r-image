@@ -1,5 +1,5 @@
 # docker manifest inspect ubuntu:22.04 -v | jq '.[0].Descriptor.digest'
-FROM ubuntu:22.04@sha256:94db6b944510db19c0ff5eb13281cf166abfe6f9e01a6f8e716e976664537c60
+FROM ubuntu:22.04@sha256:0eb0f877e1c869a300c442c41120e778db7161419244ee5cbc6fa5f134e74736
 
 ENV R_VERSION=4.4.1
 ENV TERM=xterm
@@ -64,7 +64,6 @@ RUN echo \
       pkg-config \
       rclone \
       rsync \
-      software-properties-common \
       ttf-mscorefonts-installer \
       tzdata \
       unzip \
@@ -80,6 +79,14 @@ RUN /install_R.sh
 
 RUN apt-get update \
  && apt-get install -y --no-install-recommends \
+      gdal-bin \
+      libfribidi-dev \
+      libgdal-dev \
+      libgeos-dev \
+      libglpk-dev \
+      libharfbuzz-dev \
+      libmagick++-dev \
+      libproj-dev \
       libxml2-dev \
  && apt-get autoremove --purge -y \
  && apt-get autoclean -y \
@@ -97,34 +104,11 @@ RUN R -s -e " \
       'plumber', \
       'rapidoc', \
       'tictoc' \
-    ) \
-  )"
-
-RUN add-apt-repository ppa:ubuntugis/ubuntugis-unstable \
- && apt-get update \
- && apt-get install -y --no-install-recommends \
-      gdal-bin \
-      libfribidi-dev \
-      libgdal-dev \
-      libgeos-dev \
-      libglpk-dev \
-      libharfbuzz-dev \
-      libmagick++-dev \
-      libproj-dev \
- && apt-get autoremove --purge -y \
- && apt-get autoclean -y \
- && rm -rf /var/lib/apt/lists/*
-
-RUN R -s -e " \
-  options(warn = 2); \
-  utils::install.packages( \
-    c( \
       'igraph', \
       'magick', \
       'renv', \
       'sf' \
-    ), \
-    repos = 'https://cloud.r-project.org' \
+    ) \
   )"
 
 RUN mkdir -p \
