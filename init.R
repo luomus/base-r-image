@@ -20,10 +20,11 @@ alert <- function(host, port, agent, branch, to, from, req, res) {
   subject <- sprintf("Error report: %s on branch %s", agent, branch)
 
   text <- sprintf(
-    "At [%s]: %s %s (Status: %s)",
+    "At [%s]: %s %s %s (Status: %s)",
     format(Sys.time()),
     req[["REQUEST_METHOD"]],
     req[["PATH_INFO"]],
+    req[["QUERY_STRING"]],
     res[["status"]]
   )
 
