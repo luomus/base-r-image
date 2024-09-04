@@ -60,7 +60,6 @@ RUN echo \
       lsb-release \
       make \
       nano \
-      nginx \
       pandoc \
       pkg-config \
       rclone \
