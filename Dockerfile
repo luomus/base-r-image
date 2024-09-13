@@ -1,9 +1,9 @@
-# docker manifest inspect ubuntu:22.04 -v | jq '.[0].Descriptor.digest'
-FROM ubuntu:22.04@sha256:075680e983398fda61b1ac59ad733ad81d18df4bc46411666bb8a03fb9ea0195
+# docker manifest inspect ubuntu:24.04 -v | jq '.[0].Descriptor.digest'
+FROM ubuntu:24.04@sha256:d35dfc2fe3ef66bcc085ca00d3152b482e6cafb23cdda1864154caf3b19094ba
 
 ENV R_VERSION=4.4.1
 ENV TERM=xterm
-ENV CRAN=https://packagemanager.posit.co/cran/__linux__/jammy/latest
+ENV CRAN=https://packagemanager.posit.co/cran/__linux__/noble/latest
 ENV TZ=Etc/UTC
 ENV OPENBLAS_NUM_THREADS=1
 ENV OMP_THREAD_LIMIT=1
