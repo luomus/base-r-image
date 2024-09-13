@@ -106,6 +106,7 @@ RUN R -s -e " \
       'tictoc', \
       'igraph', \
       'magick', \
+      'ragg', \
       'renv', \
       'sf' \
     ) \
