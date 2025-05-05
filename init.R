@@ -24,7 +24,9 @@ alert <- function(host, port, agent, branch, to, from, req, res) {
     format(Sys.time()),
     req[["REQUEST_METHOD"]],
     req[["PATH_INFO"]],
-    req[["QUERY_STRING"]],
+    paste(
+      substr(strsplit(req[["QUERY_STRING"]], "&")[[1]], 1, 40), collapse = "&"
+    ),
     res[["status"]]
   )
 
