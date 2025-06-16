@@ -1,7 +1,7 @@
 # docker manifest inspect ubuntu:24.04 -v | jq '.[0].Descriptor.digest'
 FROM ubuntu:24.04@sha256:04f510bf1f2528604dc2ff46b517dbdbb85c262d62eacc4aa4d3629783036096
 
-ENV R_VERSION=4.5.0
+ENV R_VERSION=4.5.1
 ENV TERM=xterm
 ENV CRAN=https://packagemanager.posit.co/cran/__linux__/noble/latest
 ENV TZ=Etc/UTC
