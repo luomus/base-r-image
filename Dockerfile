@@ -1,5 +1,5 @@
-# docker manifest inspect ubuntu:24.04 -v | jq '.[0].Descriptor.digest'
-FROM ubuntu:24.04@sha256:4f1db91d9560cf107b5832c0761364ec64f46777aa4ec637cca3008f287c975e
+# podman manifest inspect ubuntu:24.04 -v | jq '.manifests.[0].digest'
+FROM ubuntu:24.04@sha256:3f83fb03282ef4e453bdf0060e0d83833bb3cf6e6f36f54d9b8517d311d78e03
 
 ENV R_VERSION=4.5.1
 ENV TERM=xterm
