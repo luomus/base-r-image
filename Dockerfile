@@ -1,7 +1,7 @@
 # podman manifest inspect ubuntu:24.04 -v | jq '.manifests.[0].digest'
-FROM ubuntu:24.04@sha256:3f83fb03282ef4e453bdf0060e0d83833bb3cf6e6f36f54d9b8517d311d78e03
+FROM ubuntu:24.04@sha256:98ff7968124952e719a8a69bb3cccdd217f5fe758108ac4f21ad22e1df44d237
 
-ENV R_VERSION=4.5.1
+ENV R_VERSION=4.5.2
 ENV TERM=xterm
 ENV CRAN=https://packagemanager.posit.co/cran/__linux__/noble/latest
 ENV TZ=Etc/UTC
