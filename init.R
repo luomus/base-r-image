@@ -71,7 +71,7 @@ p[["registerHooks"]](
 
       f <- log_info
 
-      if (res[["status"]] >= 400L) {
+      if (res[["status"]] >= 401L) {
 
         f <- log_error
 
