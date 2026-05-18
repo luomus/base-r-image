@@ -55,6 +55,7 @@ RUN echo \
       libssl-dev \
       libtiff* \
       libudunits2-dev \
+      libv8-dev \
       libz-dev \
       locales \
       lsb-release \
@@ -100,15 +101,16 @@ RUN R -s -e " \
       'covr', \
       'DT', \
       'emayili', \
+      'igraph', \
       'logger', \
+      'magick', \
       'plumber', \
       'rapidoc', \
-      'tictoc', \
-      'igraph', \
-      'magick', \
       'ragg', \
       'renv', \
-      'sf' \
+      'sf', \
+      'tictoc', \
+      'V8' \
     ) \
   )"
 
