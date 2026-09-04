@@ -1,5 +1,5 @@
 # podman manifest inspect ubuntu:24.04 -v | jq '.manifests.[0].digest'
-FROM ubuntu:24.04@sha256:023f8a753c22258c9fe2d0005a7d28258038da7d620e9f93e9ad78aa266f9f11
+FROM ubuntu:24.04@sha256:1e0a86e57d247923571b75e0aaf48a1449cf8c543d51fb3e07a4a7d7bfa79316
 
 ENV R_VERSION=4.6.1
 ENV TERM=xterm
